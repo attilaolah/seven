@@ -159,7 +159,6 @@ def reduce_tree(node, parent=None):
             #skip whole unit if its optional
             return None
 
-        leaf = True
         details_node = None
         alternatives_node = None
         has_repeater = False
@@ -168,7 +167,6 @@ def reduce_tree(node, parent=None):
 
         for child in node.children:
             if child.type == syms.Details:
-                leaf = False
                 details_node = child
             elif child.type == syms.Repeater:
                 has_repeater = True

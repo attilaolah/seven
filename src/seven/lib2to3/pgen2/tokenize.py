@@ -31,7 +31,20 @@ __credits__ = \
 
 import string, re
 from codecs import BOM_UTF8, lookup
-from .token import COMMENT, NL, NAME, OP, NEWLINE, STRING, ENDMARKER, INDENT, DEDENT, NUMBER
+from .token import (
+    COMMENT,
+    DEDENT,
+    ENDMARKER,
+    ERRORTOKEN,
+    INDENT,
+    NAME,
+    NEWLINE,
+    NL,
+    NUMBER,
+    OP,
+    STRING,
+    tok_name,
+)
 
 from . import token
 __all__ = [x for x in dir(token) if x[0] != '_'] + ["tokenize",
