@@ -12,6 +12,7 @@ def start():
         globalhook = seven.hook.Hook()
         globalhook.start()
 
+
 def stop():
     global globalhook
     if globalhook is not None:

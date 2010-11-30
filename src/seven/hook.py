@@ -38,8 +38,6 @@ class Hook(dict):
 
     def find_module(self, name, fullpath):
         """Return the module loader object, `self`."""
-        if name.rsplit('.')[-1] == '__future__':
-            return None  # don't do anything with `__future__`
         if fullpath is not None:
             self[name] = fullpath
             return self

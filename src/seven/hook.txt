@@ -46,3 +46,11 @@ If a module is not found, the hook will simply not be executed::
     ImportError: No module named ...
 
     >>> seven.stop()
+
+Test that the hook also work for modules that are single files::
+
+    >>> seven.start()
+    >>> import testseven
+    I'm a single .py file.
+
+    >>> seven.stop()

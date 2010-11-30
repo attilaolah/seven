@@ -10,13 +10,13 @@ optionflags = doctest.NORMALIZE_WHITESPACE | \
 options = {'optionflags': optionflags, 'globs': {'pprint': pprint}}
 
 
-TESTFILES = (
+TESTFILES = [
     'hook.txt',
     'refactor.txt',
-)
-TESTMODS = (
+]
+TESTMODS = [
     'seven.hook',
-)
+]
 
 
 def test_suite():
@@ -27,7 +27,3 @@ def test_suite():
         doctest.DocTestSuite(mod,
             **options) for mod in TESTMODS],
     )
-
-
-if __name__ == '__main__':
-    unittest.main(defaultTest='test_suite')
