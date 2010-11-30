@@ -1,0 +1,65 @@
+Lower level interface
+=====================
+
+To do code conversion manually, it is possible to use the
+:class:`seven.refactor.RefactoringTool` class. It can be used to porform a
+serios of 'fixes' on a string or unicode object containing Python code.
+
+Example::
+
+    >>> from seven.refactor import RefactoringTool
+    >>> rtool = RefactoringTool()
+
+    >>> print rtool('''\
+    ... import os
+    ...
+    ... @foo.bar
+    ... @spam(x=2)
+    ... @eggs(foo.bar, *sys.argv, **kwargs)
+    ... class SomeDecoratedClass(SomeSubclass):
+    ...     """This is a decorated class."""
+    ... ''')
+    from __future__ import absolute_import, division
+    import os
+    class SomeDecoratedClass(SomeSubclass):
+        """This is a decorated class."""
+    SomeDecoratedClass = eggs(foo.bar, *sys.argv, **kwargs)(SomeDecoratedClass)
+    SomeDecoratedClass = spam(x=2)(SomeDecoratedClass)
+    SomeDecoratedClass = foo.bar(SomeDecoratedClass)
+
+Note that by default all the fixes are enabled. The 'absolute_import' and
+'division' future features are always imported, even if there's no division or
+import statement in the source. The 'with_statement', however, is only
+imported if there really is a 'with' statement::
+
+    >>> print rtool('''\
+    ... with open(foo) as myfile:
+    ...     myfile.write(somedata)
+    ... ''')
+    from __future__ import with_statement, absolute_import, division
+    with open(foo) as myfile:
+        myfile.write(somedata)
+
+To enable only some of the fixes, subclass the
+:class:`seven.refactor.RefactoringTool` class::
+
+    >>> class FixOnlyDecorators(RefactoringTool):
+    ...     fixes = [
+    ...         'seven.fixes.fix_class_decorators',
+    ...     ]
+    >>> rtool = FixOnlyDecorators()
+
+    >>> print rtool('''\
+    ... with open(file) as data:
+    ...     data.seek(pos)
+    ... 
+    ... @decorated
+    ... class C(object):
+    ...     x = 42
+    ... ''')
+    with open(file) as data:
+        data.seek(pos)
+    <BLANKLINE>
+    class C(object):
+        x = 42
+    C  =  decorated(C)

@@ -1,0 +1,48 @@
+Higher level interface
+======================
+
+Instead of using the :class:`seven.hook.Hook` class directly, the :mod:`seven`
+module provides two convenience functions for handling a single compatibility
+import hook. :func:`seven.start` creates this global import hook, and
+:func:`seven.stop` destroys it.
+
+Example::
+
+    >>> import seven
+    >>> seven.start()
+
+    >>> import seven.test.with_statement
+    Executing 'with' statement.
+
+    >>> import seven.test.absolute_import
+    Imported: <module 'os' from '...'>
+
+    >>> import seven.test.division
+    5 / 3 = 1.666666...
+
+    >>> seven.stop()
+    >>> mod = reload(seven.test.with_statement)
+    Traceback (most recent call last):
+    ...
+    SyntaxError: invalid syntax
+
+    >>> mod = reload(seven.test.absolute_import)
+    Traceback (most recent call last):
+    ...
+    ValueError: FAKE os module!
+
+    >>> mod = reload(seven.test.division)
+    5 / 3 = 1
+
+If a module is not found, the hook will simply not be executed::
+
+    >>> import string, random
+    >>> mod = (random.choice(string.ascii_lowercase) for x in xrange(100))
+
+    >>> seven.start()
+    >>> exec 'import %s' % ''.join(mod)
+    Traceback (most recent call last):
+    ...
+    ImportError: No module named ...
+
+    >>> seven.stop()
