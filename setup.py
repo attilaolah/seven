@@ -12,7 +12,7 @@ setup(
     description='Python 2.5 compatibility wrapper for Python 2.7 code.',
     long_description=\
         open('README.rst').read() + '\n\n' + \
-        open(os.path.join('src', 'seven', 'hooks.txt')).read() + '\n\n' + \
+        open(os.path.join('src', 'seven', 'hook.txt')).read() + '\n\n' + \
         open(os.path.join('src', 'seven', 'refactor.txt')).read() + '\n\n' + \
         open('CHANGES.rst').read(),
     # Author information:
