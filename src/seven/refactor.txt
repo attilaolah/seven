@@ -27,18 +27,41 @@ Example::
     SomeDecoratedClass = spam(x=2)(SomeDecoratedClass)
     SomeDecoratedClass = foo.bar(SomeDecoratedClass)
 
-Note that by default all the fixes are enabled. The 'absolute_import' and
-'division' future features are always imported, even if there's no division or
-import statement in the source. The 'with_statement', however, is only
-imported if there really is a 'with' statement::
+Note that by default all the fixes are enabled. For now, the 'division' future
+features are always imported, even if there's no division or import statement
+in the source. The 'with_statement', however, is only imported if there really
+is a 'with' statement. Likewise, the 'absolute_import' feature is only
+imported when the module contains imports::
 
     >>> print rtool('''\
     ... with open(foo) as myfile:
     ...     myfile.write(somedata)
     ... ''')
-    from __future__ import with_statement, absolute_import, division
+    from __future__ import with_statement, division
     with open(foo) as myfile:
         myfile.write(somedata)
+
+Make sure that function decorators will not be touched::
+
+    # XXX: make these tests pass
+
+    >>> """print rtool('''\
+    ... @decorated
+    ... def function():
+    ...     pass
+    ... @decorated
+    ... class Class(object):
+    ...     pass
+    ... ''')"""
+    "..."
+    >>> #from __future__ import absolute_import, division
+    >>> #@decorated
+    >>> #def function():
+    >>> #    pass
+    >>> #class Class(object):
+    >>> #    pass
+    >>> #Class  =  decorated(Class)
+
 
 To enable only some of the fixes, subclass the
 :class:`seven.refactor.RefactoringTool` class::

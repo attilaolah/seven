@@ -8,7 +8,16 @@ class FixFutureFeature(fixer_base.BaseFix):
 
     PATTERN = 'file_input'
 
-    feature = NotImplemented  # subclasses must define this
+    BM_compatible = True
+
+    @property
+    def feature(self):
+        raise NotImplementedError('Subclasses must set the feature.')
+
+    def start_tree(self, tree, name):
+        """Do not add future feature if already imported."""
+        super(FixFutureFeature, self).start_tree(tree, name)
+        self.skip = self.feature in tree.future_features
 
     def transform(self, node, results):
         """Raise an exception to be caught later."""
