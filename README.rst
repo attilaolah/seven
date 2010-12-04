@@ -33,7 +33,7 @@ the future, but for now it is advised that only the necessary modules be
 processed.
 
 The following example will only preprocess the modules :mod:`foo`,
-mod:`spam.eggs` and their submodules, :mod:`foo.*` and :mod:`spam.eggs.*`.
+mod:`spam.eggs` and their submodules, :mod:`foo.*` and :mod:`spam.eggs.*`::
 
     >>> seven.start(['foo', 'spam.eggs'])
 
