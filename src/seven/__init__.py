@@ -6,11 +6,11 @@ __all__ = 'start', 'stop'
 globalhook = None
 
 
-def start():
+def start(modules=None):
     global globalhook
     if globalhook is None:
         globalhook = seven.hook.Hook()
-        globalhook.start()
+    globalhook.start(modules)
 
 
 def stop():

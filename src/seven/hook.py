@@ -27,10 +27,11 @@ class Hook(dict):
 
     """
 
-    def start(self):
+    def start(self, modules=None):
         """Insert the hook to `sys.meta_path`."""
         if self not in sys.meta_path:
             sys.meta_path.insert(0, self)
+        self.modules = modules
 
     def stop(self):
         """Remove the hook from `sys.meta_path`."""
@@ -38,6 +39,14 @@ class Hook(dict):
 
     def find_module(self, name, fullpath):
         """Return the module loader object, `self`."""
+        if self.modules is not None:
+            # We have a whitelist of modules, process only those in the list
+            process = False
+            for module in self.modules:
+                if name == module or name.startswith('%s.' % module):
+                    process = True
+            if not process:
+                return  # module not in the whitelist
         if name.rsplit('.')[-1] == '__future__':
             return  # don't do anything with __future__ imports
         if fullpath is not None:

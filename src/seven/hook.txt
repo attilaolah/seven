@@ -11,6 +11,9 @@ Example::
     >>> import seven
     >>> seven.start()
 
+    >>> import seven.test.class_decorators
+    Foo: <decorated object at ...>
+
     >>> import seven.test.with_statement
     Executing 'with' statement.
 
@@ -21,6 +24,12 @@ Example::
     5 / 3 = 1.666666...
 
     >>> seven.stop()
+
+    >>> mod = reload(seven.test.class_decorators)
+    Traceback (most recent call last):
+    ...
+    SyntaxError: invalid syntax
+
     >>> mod = reload(seven.test.with_statement)
     Traceback (most recent call last):
     ...
@@ -40,6 +49,7 @@ If a module is not found, the hook will simply not be executed::
     >>> mod = (random.choice(string.ascii_lowercase) for x in xrange(100))
 
     >>> seven.start()
+
     >>> exec 'import %s' % ''.join(mod)
     Traceback (most recent call last):
     ...
@@ -50,7 +60,26 @@ If a module is not found, the hook will simply not be executed::
 Test that the hook also work for modules that are single files::
 
     >>> seven.start()
+
     >>> import testseven
     I'm a single .py file.
+
+    >>> seven.stop()
+
+Test module whitelists::
+
+    >>> seven.start(['foo', 'bar'])
+
+    >>> mod = reload(seven.test.with_statement)
+    Traceback (most recent call last):
+    ...
+    SyntaxError: invalid syntax
+
+    >>> seven.stop()
+
+    >>> seven.start(['foo', 'bar', 'seven.test'])
+
+    >>> mod = reload(seven.test.with_statement)
+    Executing 'with' statement.
 
     >>> seven.stop()
