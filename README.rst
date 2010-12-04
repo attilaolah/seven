@@ -81,7 +81,7 @@ The following features do not have fixers yet:
 How to write fixers?
 --------------------
 
-By subclassing :class:`seven.lib2to3.fixer_base.BaseFix`. You can alse fork
+By subclassing :class:`seven.lib2to3.fixer_base.BaseFix`. You can also fork
 this project on GitHub_, have a look at the existing fixers in
 ``src/seven/fixes`` and add your own, thend send me a pull request.
 
