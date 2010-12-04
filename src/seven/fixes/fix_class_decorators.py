@@ -20,7 +20,11 @@ class FixClassDecorators(fixer_base.BaseFix):
 
     """
 
-    PATTERN = "decorated"
+    PATTERN = """
+    decorated< ( decorator | decorators ) classdef >
+    """
+
+    BM_compatible = True
 
     def transform(self, node, results):
         """Transform the decorated class into assignments."""
@@ -46,7 +50,7 @@ class FixClassDecorators(fixer_base.BaseFix):
                 pytree.Leaf(5, ' '),
             )
             decorator_node.children.insert(2,
-                pytree.Leaf(22, ' = '),
+                pytree.Leaf(22, '='),
             )
             decorator_node.children.insert(3,
                 pytree.Leaf(5, ' '),

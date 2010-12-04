@@ -43,24 +43,21 @@ imported when the module contains imports::
 
 Make sure that function decorators will not be touched::
 
-    # XXX: make these tests pass
-
-    >>> """print rtool('''\
+    >>> print rtool('''\
     ... @decorated
     ... def function():
     ...     pass
     ... @decorated
-    ... class Class(object):
-    ...     pass
-    ... ''')"""
-    "..."
-    >>> #from __future__ import absolute_import, division
-    >>> #@decorated
-    >>> #def function():
-    >>> #    pass
-    >>> #class Class(object):
-    >>> #    pass
-    >>> #Class  =  decorated(Class)
+    ... class C(object):
+    ...     x = 42
+    ... ''')
+    from __future__ import division
+    @decorated
+    def function():
+        pass
+    class C(object):
+        x = 42
+    C = decorated(C)
 
 
 To enable only some of the fixes, subclass the
@@ -85,4 +82,4 @@ To enable only some of the fixes, subclass the
     <BLANKLINE>
     class C(object):
         x = 42
-    C  =  decorated(C)
+    C = decorated(C)
