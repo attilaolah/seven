@@ -55,10 +55,7 @@ class Hook(dict):
 
         # Otherwise, we need to find the module in a list of paths
         mod = imp.find_module(fullname.rsplit('.')[-1], self[fullname])
-        #try:
         return self.create_module(fullname, *mod)
-        #except:
-        #    raise ValueError, [fullname, self]
 
     def create_module(self, fullname, file, pathname, description):
         """Alter and execute the module source code, and return a module."""
