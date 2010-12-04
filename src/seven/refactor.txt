@@ -59,7 +59,6 @@ Make sure that function decorators will not be touched::
         x = 42
     C = decorated(C)
 
-
 To enable only some of the fixes, subclass the
 :class:`seven.refactor.RefactoringTool` class::
 
