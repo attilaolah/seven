@@ -1,12 +1,12 @@
-:mod:`seven` is a ``Python 2.6+`` compatibility layer for ``Python 2.5``. It
+``seven`` is a ``Python 2.6+`` compatibility layer for ``Python 2.5``. It
 allows you to import ``Python 2.6`` or ``2.7`` code in a ``2.5`` interpreter.
 It is mainly intended to be used on ``Google App Engine``.
 
 Basic usage
 -----------
 
-Before importing non-compatible code, you need to start the :mod:`seven` import
-hook by calling :func:`seven.start()`::
+Before importing non-compatible code, you need to start the ``seven`` import
+hook by calling ``seven.start()``::
 
     >>> import seven
     >>> seven.start()
@@ -16,9 +16,9 @@ hook by calling :func:`seven.start()`::
     >>> seven.stop()  # optional
 
 The above will install an import hook and preprocess all modules before
-importing them using :mod:`lib2to3` from the ``Python 2.7`` ``stdlib``. The
+importing them using ``lib2to3`` from the ``Python 2.7`` ``stdlib``. The
 installed hook will process all imported python modules until you call
-:func:`seven.stop()`. If you don't stop it, all imports will be processed.
+``seven.stop()``. If you don't stop it, all imports will be processed.
 
 
 Import whitelists
@@ -32,8 +32,8 @@ and the filename is not displayed correctly. These things might be improved in
 the future, but for now it is advised that only the necessary modules be
 processed.
 
-The following example will only preprocess the modules :mod:`foo`,
-mod:`spam.eggs` and their submodules, :mod:`foo.*` and :mod:`spam.eggs.*`::
+The following example will only preprocess the modules ``foo``, ``spam.eggs``
+and their submodules, ``foo.*`` and ``spam.eggs.*``::
 
     >>> seven.start(['foo', 'spam.eggs'])
 
@@ -81,8 +81,8 @@ The following features do not have fixers yet:
 How to write fixers?
 --------------------
 
-By subclassing :class:`seven.lib2to3.fixer_base.BaseFix`. You can also fork
-this project on GitHub_, have a look at the existing fixers in
-``src/seven/fixes`` and add your own, thend send me a pull request.
+By subclassing ``seven.lib2to3.fixer_base.BaseFix``. You can also fork this
+project on GitHub_, have a look at the existing fixers in ``src/seven/fixes``
+and add your own, thend send me a pull request.
 
 .. _GitHub: https://github.com/aatiis/seven
