@@ -68,6 +68,7 @@ What needs to be implemented?
 
 The following features do not have fixers yet:
 
+* indented ``class`` decorators
 * ``except Exception as e:``
 * advanced string formatting
 * ``print`` as a function
