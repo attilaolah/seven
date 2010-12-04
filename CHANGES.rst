@@ -1,4 +1,4 @@
-1.0.0 (2010-12-01)
+0.5   (2010-12-04)
 ==================
 
-* First public release.
+* Initial public release.

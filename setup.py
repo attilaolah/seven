@@ -1,19 +1,15 @@
-import os
-
 from setuptools import find_packages, setup
 
 
 setup(
     # Package information:
     name='seven',
-    version='1.0.0dev',
+    version='0.5',
     license='GNU GPL',
     url='http://github.com/aatiis/seven',
     description='Python 2.5 compatibility wrapper for Python 2.7 code.',
     long_description=\
         open('README.rst').read() + '\n\n' + \
-        open(os.path.join('src', 'seven', 'hook.txt')).read() + '\n\n' + \
-        open(os.path.join('src', 'seven', 'refactor.txt')).read() + '\n\n' + \
         open('CHANGES.rst').read(),
     # Author information:
     author='Attila Olah',
