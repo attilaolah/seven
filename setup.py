@@ -5,7 +5,7 @@ setup(
     # Package information:
     name='seven',
     version='0.5',
-    license='GNU GPL',
+    license='PSF License',
     url='http://github.com/aatiis/seven',
     description='Python 2.5 compatibility wrapper for Python 2.7 code.',
     long_description=\
@@ -35,7 +35,7 @@ setup(
         'Framework :: Buildout',
         'Intended Audience :: Developers',
         'License :: OSI Approved',
-        'License :: OSI Approved :: GNU General Public License (GPL)',
+        'License :: OSI Approved :: Python Software Foundation License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
