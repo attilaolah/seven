@@ -18,6 +18,7 @@ class RefactoringTool(object):
 
     def __call__(self, code, name='<string>'):
         """Call each refactoring tool ang catch marker exceptions."""
+        code = code if code.endswith('\n') else code + '\n'
         future_imports = []
         for child in self.children:
             try:
