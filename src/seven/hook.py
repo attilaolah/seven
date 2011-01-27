@@ -1,4 +1,5 @@
 import imp
+import os
 import sys
 
 from . import refactor
@@ -71,9 +72,11 @@ class Hook(dict):
     def create_module(self, fullname, file, pathname, description):
         """Alter and execute the module source code, and return a module."""
         suffix, mode, type = description
-        if type != imp.PY_SOURCE:
+        if type not in (imp.PY_SOURCE, imp.PKG_DIRECTORY):
             # Do nothing, not a Python source file
             return imp.load_module(fullname, file, pathname, description)
+        elif type == imp.PKG_DIRECTORY:
+            file = open(os.path.join(pathname, '__init__.py'), 'rb')
 
         # Create our own module object
         mod = imp.new_module(fullname)
