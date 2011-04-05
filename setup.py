@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 setup(
     # Package information:
     name='seven',
-    version='0.5',
+    version='0.6',
     license='PSF License',
     url='http://github.com/aatiis/seven',
     description='Python 2.5 compatibility wrapper for Python 2.7 code.',
