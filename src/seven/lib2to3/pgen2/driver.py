@@ -24,6 +24,9 @@ import sys
 # Pgen imports
 from . import grammar, parse, token, tokenize, pgen
 
+# Seven imports
+import seven
+
 
 class Driver(object):
 
@@ -64,11 +67,11 @@ class Driver(object):
                 continue
             if type == token.OP:
                 type = grammar.opmap[value]
-            if debug:
+            if debug and seven.log:
                 self.logger.debug("%s %r (prefix=%r)",
                                   token.tok_name[type], value, prefix)
             if p.addtoken(type, value, (prefix, start)):
-                if debug:
+                if debug and seven.log:
                     self.logger.debug("Stop.")
                 break
             prefix = ""
@@ -124,14 +127,17 @@ def load_grammar(gt="Grammar.txt", gp=None,
             tail = ""
         gp = head + tail + ".".join(map(str, sys.version_info)) + ".pickle"
     if force or not _newer(gp, gt):
-        logger.info("Generating grammar tables from %s", gt)
+        if seven.log:
+            logger.info("Generating grammar tables from %s", gt)
         g = pgen.generate_grammar(gt)
-        if save:
-            logger.info("Writing grammar tables to %s", gp)
+        if save and seven.speedup:
+            if seven.log:
+                logger.info("Writing grammar tables to %s", gp)
             try:
                 g.dump(gp)
             except IOError, e:
-                logger.info("Writing failed:"+str(e))
+                if seven.log:
+                    logger.info("Writing failed:"+str(e))
     else:
         g = grammar.Grammar()
         g.load(gp)
