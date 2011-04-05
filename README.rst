@@ -63,6 +63,16 @@ becomes::
     C = decorated(C)
 
 
+How to disable logging and pickling?
+------------------------------------
+
+On certain production environments, logging might not be very useful, or
+writing files might not be possible (e.g. App Engine). To disable logging or
+writing pickle dumps, create a module named ``sevenconfig`` and add the ``log =
+False`` or ``speedups = False`` globals (or both). Make sure the module is
+importable before importing ``seven``.
+
+
 What needs to be implemented?
 -----------------------------
 
