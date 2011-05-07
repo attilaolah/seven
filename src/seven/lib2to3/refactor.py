@@ -28,6 +28,9 @@ from .fixer_util import find_root
 from . import pytree, pygram
 from . import btm_matcher as bm
 
+# Seven imports
+import seven
+
 
 def get_all_fix_names(fixer_pkg, remove_prefix=True):
     """Return a sorted list of all available fix names in the given package."""
@@ -273,12 +276,14 @@ class RefactoringTool(object):
         """Hook to log a message."""
         if args:
             msg = msg % args
-        self.logger.info(msg)
+        if seven.log:
+            self.logger.info(msg)
 
     def log_debug(self, msg, *args):
         if args:
             msg = msg % args
-        self.logger.debug(msg)
+        if seven.log:
+            self.logger.debug(msg)
 
     def print_output(self, old_text, new_text, filename, equal):
         """Called with the old version, new version, and filename of a
