@@ -1,3 +1,12 @@
+.. seven documentation master file, created by
+   sphinx-quickstart on Sat Feb  4 20:02:21 2012.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+
+Summary
+-------
+
 ``seven`` is a Python 2.6+ compatibility layer for Python 2.5. It allows you to
 import Python 2.6 or 2.7 code in a 2.5 interpreter.
 
