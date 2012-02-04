@@ -13,4 +13,4 @@ licence information, so check the source code for more info.
 
 Check the documentatdon_ for more info.
 
-.. _documentation: http://readthedocs.org/projects/seven
+.. _documentation: http://seven.readthedocs.org/
