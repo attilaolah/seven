@@ -35,6 +35,7 @@ setup(
         'Framework :: Buildout',
         'Intended Audience :: Developers',
         'License :: OSI Approved',
+        'License :: OSI Approved :: MIT License',
         'License :: OSI Approved :: Python Software Foundation License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
