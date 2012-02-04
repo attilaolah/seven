@@ -11,6 +11,6 @@ It is licensed under the MIT licence, except for the lib2to3 code it contains,
 which in made available under the PSF licence. Those files contain individual
 licence information, so check the source code for more info.
 
-Check the documentatdon_ for more info.
+Check the documentation_ for more info.
 
 .. _documentation: http://seven.readthedocs.org/
